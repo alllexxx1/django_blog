@@ -8,13 +8,9 @@ def index(request):
 
 
 def about(request):
-    return render(request, 'about.html')
-
-
-def about1(request):
-    tags = ['m', 'mm', 'mmm', '111']
+    tags = ['Education', 'Programming', 'Python', 'OOP']
     return render(
         request,
-        'about1.html',
+        'about.html',
         context={'tags': tags},
     )
