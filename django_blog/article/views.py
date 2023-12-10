@@ -1,7 +1,7 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views import View
-from django.urls import reverse
-from django.shortcuts import redirect
+from django.urls import reverse, reverse_lazy
+# from django.shortcuts import redirect
 
 
 class ArticleView(View):
@@ -18,6 +18,8 @@ class ArticleView(View):
 
 
 class IndexView(View):
+    # url = reverse_lazy('article', kwargs={'tags': 'PYTHON', 'article_id': 42})
     def get(self, request):
+        # url = self.url
         url = reverse('article', kwargs={'tags': 'PYTHON', 'article_id': 42})
         return HttpResponseRedirect(url)
