@@ -1,25 +1,27 @@
-from django.http import HttpResponse, HttpResponseRedirect
 from django.views import View
-from django.urls import reverse, reverse_lazy
-# from django.shortcuts import redirect
+from django.shortcuts import render, get_object_or_404
+from django.http import Http404
 
-
-class ArticleView(View):
-
-    def get(self, request, tags, article_id):
-        response_text = f'Статья номер {article_id}. Тег {tags}'
-        return HttpResponse(response_text)
-
-
-# def index(request):
-#     # url = reverse('article', args=['python', 42])
-#     url = reverse('article', kwargs={'tags': 'PYTHON', 'article_id': 42})
-#     return redirect(url)
+from .models import Article
 
 
 class IndexView(View):
-    # url = reverse_lazy('article', kwargs={'tags': 'PYTHON', 'article_id': 42})
-    def get(self, request):
-        # url = self.url
-        url = reverse('article', kwargs={'tags': 'PYTHON', 'article_id': 42})
-        return HttpResponseRedirect(url)
+
+    def get(self, request, *args, **kwargs):
+        articles = Article.objects.all()
+        return render(
+            request,
+            'articles/index.html',
+            context={'articles': articles}
+        )
+
+
+class ArticleView(View):
+    def get(self, request, *args, **kwargs):
+        article = get_object_or_404(Article, id=kwargs['id'])
+        return render(
+            request,
+            'articles/show.html',
+            context={'article': article}
+        )
+

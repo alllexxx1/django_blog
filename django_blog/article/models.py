@@ -9,6 +9,6 @@ class Article(models.Model):
     def __str__(self):
         return self.name
 
-# Article.objects.bulk_create([Article(name='magic article', body='some info about MAGIC article'), Article(name='usual article', body='some info about USUAL article'),
-#                              Article(name='unusual article', body='some info about UNUSUAL article'), Article(name='mega article', body='some info about MEGA article'),
-#                              Article(name='tremendous article', body='some info about TREMENDOUS article')])
+# Article.objects.bulk_create([Article(name='magic articles', body='some info about MAGIC articles'), Article(name='usual articles', body='some info about USUAL articles'),
+#                              Article(name='unusual articles', body='some info about UNUSUAL articles'), Article(name='mega articles', body='some info about MEGA articles'),
+#                              Article(name='tremendous articles', body='some info about TREMENDOUS articles')])
