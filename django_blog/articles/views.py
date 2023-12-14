@@ -1,6 +1,5 @@
 from django.views import View
 from django.shortcuts import render, get_object_or_404
-from django.http import Http404
 
 from .models import Article
 
@@ -21,7 +20,7 @@ class ArticleView(View):
         article = get_object_or_404(Article, id=kwargs['id'])
         return render(
             request,
-            'articles/show.html',
+            'articles/article.html',
             context={'article': article}
         )
 

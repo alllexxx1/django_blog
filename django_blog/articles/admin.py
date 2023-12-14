@@ -6,6 +6,6 @@ from .models import Article
 
 @admin.register(Article)
 class ArticleAdmin(admin.ModelAdmin):
-    list_display = ('name', 'timestamp')
+    list_display = ('pk', 'name', 'category', 'timestamp')
     search_fields = ['name', 'body']
     list_filter = (('timestamp', DateFieldListFilter),)
