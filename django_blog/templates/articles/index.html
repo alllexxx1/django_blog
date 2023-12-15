@@ -1,10 +1,13 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <ul>
-        <h1>The list of the articles:</h1>
-            {% for article in articles %}
-                <li><h2><a href="{% url 'articles_detail' article.id %}">{{ article.name }}</a></h2></li>
-            {% endfor %}
-    </ul>
+<ul>
+    <h1>The list of the articles:</h1>
+        {% for article in articles %}
+            <li><h2><a href="{% url 'articles_detail' article.id %}">{{ article.name }}</a></h2></li>
+        {% endfor %}
+</ul>
+<hr>
+<h3>Leave you comment here:</h3>
+<a href="{% url 'comment_create' %}">Comment section</a>
 {% endblock %}

@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+    {% if comments %}
+    <h2>Article Comments:</h2>
+        {% for comment in comments %}
+        <ul>
+            <li>{{ comment.content }}</li>
+        </ul>
+        {% endfor %}
+    {% endif %}
+{% endblock %}

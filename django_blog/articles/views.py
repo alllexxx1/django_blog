@@ -1,7 +1,8 @@
 from django.views import View
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 
-from .models import Article
+from .models import Article, ArticleComment
+from .forms import ArticleCommentForm
 
 
 class IndexView(View):
@@ -24,3 +25,27 @@ class ArticleView(View):
             context={'article': article}
         )
 
+
+class ArticleCommentFormView(View):
+
+    def get(self, request, *args, **kwargs):
+        form = ArticleCommentForm()
+        return render(request, 'articles/comment_form.html', {'form': form})
+
+    def post(self, requset, *args, **kwargs):
+        form = ArticleCommentForm(requset.POST)
+        if form.is_valid():
+            form.save()
+
+        return redirect('articles_index')
+
+
+class ArticleCommentView(View):
+
+    def get(self, request, *args, **kwargs):
+        comments = ArticleComment.objects.all()
+        return render(
+            request,
+            'articles/comments.html',
+            {'comments': comments}
+        )
