@@ -1,12 +1,21 @@
 {% extends "base.html" %}
 
 {% block content %}
+{% if messages %}
+<ul class="messages">
+    {% for message in messages %}
+        <li>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
 <ul>
     <h1>The list of the articles:</h1>
         {% for article in articles %}
             <li><h2><a href="{% url 'articles_detail' article.id %}">{{ article.name }}</a></h2></li>
         {% endfor %}
 </ul>
+<hr>
+<h2><a href="{% url 'article_create' %}">Create your own article</a></h2>
 <hr>
 <h3>Leave you comment here:</h3>
 <a href="{% url 'comment_create' %}">Comment section</a>
