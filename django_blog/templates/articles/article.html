@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h2>{{ article.name }}</h2>
+    <h2>{{ article.name }} {% include "articles/delete.html" %}</h2>
     <div>{{ article.body }}</div>
     <hr>
     <div>Категория статьи is <a href="{% url 'categories_detail' article.category.id %}">{{ article.category.name }}</a></div>
