@@ -30,7 +30,7 @@ class ArticleView(View):
 class ArticleCommentView(View):
 
     def get(self, request, *args, **kwargs):
-        comments = ArticleComment.objects.all()
+        comments = ArticleComment.objects.all()[5:]
         return render(
             request,
             'articles/comments.html',
@@ -63,4 +63,5 @@ class ArticleCommentFormView(View):
         form = ArticleCommentForm(requset.POST)
         if form.is_valid():
             form.save()
-        return redirect('articles_index')
+            messages.success(requset, 'Your comment has been added successfully!')
+        return redirect('comments_index')

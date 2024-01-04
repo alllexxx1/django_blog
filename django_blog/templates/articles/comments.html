@@ -1,5 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
     {% if comments %}
     <h2>Article Comments:</h2>
         {% for comment in comments %}
