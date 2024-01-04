@@ -1,12 +1,16 @@
 {% extends "base.html" %}
 
 {% block content %}
-{% include "articles/errors.html" %}
-<form action="{% url 'article_create' %}" method="post">
-    {% csrf_token %}
-    <table border="1">
-       {{ form }}
-    </table>
-    <input type="submit" value="Create article">
-</form>
+    {% include "articles/errors.html" %}
+    <div class="article-create-container">
+        <form action="{% url 'article_create' %}" method="post">
+            {% csrf_token %}
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    {{ form.as_table }}
+                </table>
+            </div>
+            <button type="submit" class="btn btn-primary">Create Article</button>
+        </form>
+    </div>
 {% endblock %}

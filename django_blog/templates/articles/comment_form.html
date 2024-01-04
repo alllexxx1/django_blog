@@ -1,11 +1,15 @@
 {% extends "base.html" %}
 
 {% block content %}
-<form action="{% url 'comment_create' %}" method="post">
-    {% csrf_token %}
-    <table border="1">
-       {{ form }}
-    </table>
-    <input type="submit" value="Сохранить">
-</form>
+    <div class="comment-create-container">
+        <form action="{% url 'comment_create' %}" method="post">
+            {% csrf_token %}
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    {{ form.as_table }}
+                </table>
+            </div>
+            <button type="submit" class="btn btn-primary">Сохранить</button>
+        </form>
+    </div>
 {% endblock %}

@@ -1,12 +1,16 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h2>{{ article.name }} {% include "articles/delete.html" %}</h2>
-    <div>{{ article.body }}</div>
-    <hr>
-    <div>Категория статьи is <a href="{% url 'categories_detail' article.category.id %}">{{ article.category.name }}</a></div>
-    <hr>
-    <div>
-        <a href="{% url 'categories_index' %}">All article categories</a>
+    <div class="article-details-container">
+        <h2>{{ article.name }} {% include "articles/delete.html" %}</h2>
+        <div class="article-body">{{ article.body }}</div>
+        <hr>
+        <div class="category-info">
+            Категория статьи is <a href="{% url 'categories_detail' article.category.id %}">{{ article.category.name }}</a>
+        </div>
+        <hr>
+        <div class="all-categories-link">
+            <a href="{% url 'categories_index' %}" class="btn btn-secondary">All Article Categories</a>
+        </div>
     </div>
 {% endblock %}

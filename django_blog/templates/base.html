@@ -1,22 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>{% block title %}Django{% endblock %}</title>
+    <!-- Add Bootstrap CDN -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet">
+    <!-- You can update the Bootstrap version as needed -->
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        #sidebar {
+            background-color: #343a40;
+            color: #ffffff;
+        }
+
+        #sidebar a {
+            color: #ffffff;
+        }
+
+        #sidebar a:hover {
+            color: #007bff;
+        }
+    </style>
 </head>
+
 <body>
-<div id="sidebar">
-    {% block sidebar %}
-        <ul>
-            <li><a href="{% url 'index' %}">Главная</a></li>
-            <li><a href="{% url 'articles_index' %}">Статьи</a></li>
-            <li><a href="{% url 'categories_index' %}">Категории статей</a></li>
-            <li><a href="{% url 'about' %}">Эбаут</a></li>
-            <li><a href="{% url 'comments_index' %}">Комментс</a></li>
-        </ul>
-    {% endblock %}
-</div>
-<div id="content">
-    {% block content %}{% endblock %}
-</div>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <nav id="sidebar" class="col-md-3 col-lg-2 d-md-block sidebar">
+                {% block sidebar %}
+                <div class="sidebar-sticky">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'index' %}">
+                                Главная
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'articles_index' %}">
+                                Статьи
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'categories_index' %}">
+                                Категории статей
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'about' %}">
+                                Эбаут
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'comments_index' %}">
+                                Комменты
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                {% endblock %}
+            </nav>
+
+            <!-- Content -->
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+                <div id="content" class="pt-3">
+                    {% block content %}{% endblock %}
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and Popper.js (required for Bootstrap components) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
+
 </html>
+

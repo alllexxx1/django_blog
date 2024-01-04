@@ -1,13 +1,16 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <ul>
+    <div class="categories-list-container">
         <h1>Categories List:</h1>
+        <ul class="list-group">
             {% for category in categories %}
-                <ul>
-                    <li><a href="{% url 'categories_detail' category.id %}">{{ category.name }}</a></li>
-                </ul>
+                <li class="list-group-item">
+                    <a href="{% url 'categories_detail' category.id %}">{{ category.name }}</a>
+                </li>
             {% endfor %}
-    </ul>
+        </ul>
+    </div>
 {% endblock %}
+
 

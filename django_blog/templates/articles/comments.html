@@ -1,18 +1,23 @@
 {% extends "base.html" %}
 {% block content %}
-{% if messages %}
-    <ul class="messages">
-        {% for message in messages %}
-            <li>{{ message }}</li>
-        {% endfor %}
-    </ul>
+    {% if messages %}
+        <div class="messages-container">
+            <ul class="messages list-group">
+                {% for message in messages %}
+                    <li class="list-group-item">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        </div>
     {% endif %}
+
     {% if comments %}
-    <h2>Article Comments:</h2>
-        {% for comment in comments %}
-        <ul>
-            <li>{{ comment.content }}</li>
-        </ul>
-        {% endfor %}
+        <div class="article-comments-container">
+            <h2>Article Comments:</h2>
+            <ul class="list-group">
+                {% for comment in comments %}
+                    <li class="list-group-item">{{ comment.content }}</li>
+                {% endfor %}
+            </ul>
+        </div>
     {% endif %}
 {% endblock %}
