@@ -53,6 +53,27 @@ class ArticleFormCreateView(View):
         return render(requset, 'articles/article_create.html', {'form': form})
 
 
+class ArticleFormEditView(View):
+    def get(self, request, *args, **kwargs):
+        article_id = kwargs.get('id')
+        article = Article.objects.get(id=article_id)
+        form = ArticleForm(instance=article)
+        return render(request, 'articles/article_edit.html',
+                      {'form': form, 'article_id': article_id})
+
+    def post(self, requset, *args, **kwargs):
+        article_id = kwargs.get('id')
+        article = Article.objects.get(id=article_id)
+        previous_article_title = article.name
+        form = ArticleForm(requset.POST, instance=article)
+        if form.is_valid():
+            form.save()
+            messages.success(requset, f'You have updated the {previous_article_title} article!')
+            return redirect('articles_index')
+        return render(requset, 'articles/article_edit.html',
+                      {'form': form, 'article_id': article_id})
+
+
 class ArticleCommentFormView(View):
 
     def get(self, request, *args, **kwargs):
